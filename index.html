@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تحميل الكتاب</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f2f2f2;
+      padding: 50px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #download {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>تحميل الكتاب</h2>
+
+  <input type="text" id="name" placeholder="الاسم الثلاثي">
+  <input type="text" id="code" placeholder="الكود">
+
+  <button onclick="checkCode()">دخول</button>
+
+  <div id="download">
+    <a href="book.pdf" download>
+      <button>تحميل الكتاب</button>
+    </a>
+  </div>
+</div>
+
+<script>
+  const validCodes = ["1234", "5678", "9999"];
+
+  function checkCode() {
+    let name = document.getElementById("name").value;
+    let code = document.getElementById("code").value;
+
+    if (validCodes.includes(code)) {
+      document.getElementById("download").style.display = "block";
+
+      let phone = "201055490795";
+      let message = `الاسم: ${name} - الكود: ${code}`;
+      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+
+    } else {
+      alert("الكود غلط ❌");
+    }
+  }
+</script>
+
+</body>
+</html>
